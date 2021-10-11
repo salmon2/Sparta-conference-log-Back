@@ -14,6 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
+@Table(name="Group_")
 public class Group {
 
     @Id @GeneratedValue

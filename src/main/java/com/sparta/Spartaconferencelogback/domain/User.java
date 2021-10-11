@@ -18,6 +18,12 @@ import static javax.persistence.FetchType.LAZY;
 @NoArgsConstructor
 public class User {
 
+    public User(String username, String nickname, String password) {
+        this.username = username;
+        this.nickname = nickname;
+        this.password = password;
+    }
+
     @Id @GeneratedValue
     private Long id;
 
