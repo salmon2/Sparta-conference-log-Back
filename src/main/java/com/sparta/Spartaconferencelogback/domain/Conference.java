@@ -20,17 +20,18 @@ public class Conference {
     private String title;
 
     @OneToMany(mappedBy = "conferenceMember", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<User> member = new ArrayList<>();
+    private List<UserConferenceMember> member = new ArrayList<>();
 
     @OneToMany(mappedBy = "conferenceAttendance", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<User> attendance = new ArrayList<>();
+    private List<UserConferenceAttendance> attendance = new ArrayList<>();
 
     private String purpose;
 
     private String contents;
 
-    @OneToOne
+    @OneToOne(mappedBy = "conference", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Date date;
+
 
 
 }

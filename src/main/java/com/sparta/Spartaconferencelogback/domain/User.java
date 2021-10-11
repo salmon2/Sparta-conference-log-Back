@@ -1,6 +1,7 @@
 package com.sparta.Spartaconferencelogback.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.UniqueElements;
@@ -31,6 +32,10 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = LAZY, cascade = ALL)
     private List<userGroup> joinedGroup = new ArrayList<>();
 
-    @OneToMany
+    @OneToMany(mappedBy = "user", fetch = LAZY, cascade = ALL)
+    private List<UserConferenceMember> userConferenceMembers = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", fetch = LAZY, cascade = ALL)
+    private List<UserConferenceAttendance> userConferenceAttendances = new ArrayList<>();
 
 }
