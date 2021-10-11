@@ -30,7 +30,7 @@ public class User {
     private String password;
 
     @OneToMany(mappedBy = "user", fetch = LAZY, cascade = ALL)
-    private List<userGroup> joinedGroup = new ArrayList<>();
+    private List<userGroup> userGroups = new ArrayList<>();
 
     @OneToMany(mappedBy = "user", fetch = LAZY, cascade = ALL)
     private List<UserConferenceMember> userConferenceMembers = new ArrayList<>();
