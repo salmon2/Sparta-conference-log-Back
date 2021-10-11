@@ -20,17 +20,7 @@ public class JwtDecoder {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     public String decodeUsername(String token) {
-        DecodedJWT decodedJWT = isValidToken(token)
-                .orElseThrow(() -> new IllegalArgumentException("유효한 토큰이 아닙니다."));
-
-        Date expiredDate = decodedJWT
-                .getClaim(CLAIM_EXPIRED_DATE)
-                .asDate();
-
-        Date now = new Date();
-        if (expiredDate.before(now)) {
-            throw new IllegalArgumentException("유효한 토큰이 아닙니다.");
-        }
+        DecodedJWT decodedJWT = getDecodedJWT(token);
 
         String username = decodedJWT
                 .getClaim(CLAIM_USER_NAME)
@@ -38,6 +28,27 @@ public class JwtDecoder {
 
         return username;
     }
+
+    public String decodeNickname(String token) {
+        DecodedJWT decodedJWT = getDecodedJWT(token);
+
+        String nickname = decodedJWT
+                .getClaim(CLAIM_NICKNAME)
+                .asString();
+
+        return nickname;
+    }
+
+    public Long decodeUserId(String token) {
+        DecodedJWT decodedJWT = getDecodedJWT(token);
+
+        Long userId = decodedJWT
+                .getClaim(CLAIM_USER_ID)
+                .asLong();
+
+        return userId;
+    }
+
 
     private Optional<DecodedJWT> isValidToken(String token) {
         DecodedJWT jwt = null;
@@ -54,6 +65,21 @@ public class JwtDecoder {
         }
 
         return Optional.ofNullable(jwt);
+    }
+
+    private DecodedJWT getDecodedJWT(String token) {
+        DecodedJWT decodedJWT = isValidToken(token)
+                .orElseThrow(() -> new IllegalArgumentException("유효한 토큰이 아닙니다."));
+
+        Date expiredDate = decodedJWT
+                .getClaim(CLAIM_EXPIRED_DATE)
+                .asDate();
+
+        Date now = new Date();
+        if (expiredDate.before(now)) {
+            throw new IllegalArgumentException("유효한 토큰이 아닙니다.");
+        }
+        return decodedJWT;
     }
 }
 

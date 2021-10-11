@@ -16,6 +16,12 @@ public class UserDetailsImpl implements UserDetails {
     private String nickname;
     private String password;
 
+    public UserDetailsImpl(Long userId, String username, String nickname) {
+        this.userId = userId;
+        this.username = username;
+        this.nickname = nickname;
+    }
+
     public UserDetailsImpl(User user) {
         this.userId = user.getId();
         this.username = user.getUsername();
@@ -36,6 +42,13 @@ public class UserDetailsImpl implements UserDetails {
     @Override
     public String getUsername() {
         return username;
+    }
+
+
+    public String getNickname() {return nickname;}
+
+    public Long getUserId() {
+        return userId;
     }
 
     @Override
