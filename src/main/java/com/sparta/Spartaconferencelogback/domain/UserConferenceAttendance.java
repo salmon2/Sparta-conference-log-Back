@@ -30,4 +30,8 @@ public class UserConferenceAttendance {
     @JsonIgnore
     private Conference conferenceAttendance;
 
+    public UserConferenceAttendance(User user, Conference conferenceAttendance) {
+        this.user = user;
+        this.conferenceAttendance = conferenceAttendance;
+    }
 }

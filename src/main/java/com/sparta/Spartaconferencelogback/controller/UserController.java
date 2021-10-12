@@ -3,11 +3,13 @@ package com.sparta.Spartaconferencelogback.controller;
 
 import com.sparta.Spartaconferencelogback.dto.SignupRequestDto;
 import com.sparta.Spartaconferencelogback.dto.UserInfoDto;
+import com.sparta.Spartaconferencelogback.dto.UserList;
 import com.sparta.Spartaconferencelogback.security.UserDetailsImpl;
 import com.sparta.Spartaconferencelogback.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -47,6 +49,12 @@ public class UserController {
         return new UserInfoDto(username, nickname);
     }
 
+    @GetMapping("/user/list")
+    @ResponseBody
+    public UserList userList(){
+        UserList userList = userService.getUserList();
+        return userList;
+    }
 
     @GetMapping("/dummy1")
     public String authTest() {

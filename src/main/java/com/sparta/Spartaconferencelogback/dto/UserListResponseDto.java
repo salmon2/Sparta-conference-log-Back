@@ -2,12 +2,14 @@ package com.sparta.Spartaconferencelogback.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @AllArgsConstructor
-public class ResponseMsg {
-    private Long statusCode;
-    private String msg;
+public class UserListResponseDto {
+    private Long userId;
+    private String username;
 }

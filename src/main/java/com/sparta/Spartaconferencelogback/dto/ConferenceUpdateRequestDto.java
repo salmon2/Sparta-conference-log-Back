@@ -5,23 +5,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ConferenceRequestDto {
+public class ConferenceUpdateRequestDto {
     private String title;
-
-    private String date;
-
     private String purpose;
-
     private String contents;
-
-    private List<UserIdRequestDto> member;
-
-    private List<UserIdRequestDto> attendance;
-
 }
