@@ -28,5 +28,4 @@ public abstract class Timestamped {
         return stringTime;
     }
 
-
 }
