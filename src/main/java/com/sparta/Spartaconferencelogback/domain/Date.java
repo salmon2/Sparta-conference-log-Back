@@ -18,13 +18,21 @@ public class Date {
     @Id @GeneratedValue
     private Long id;
 
-    private String year;
+    private Long year;
 
-    private String month;
+    private Long month;
 
-    private String day;
+    private Long day;
 
     @OneToMany(mappedBy = "date", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Conference> conferences = new ArrayList<>();
 
+    public Date(Long year, Long month, Long day) {
+        this.year = year;
+        this.month = month;
+        this.day = day;
+    }
 }
+
+
+

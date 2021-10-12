@@ -12,6 +12,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 public class UserConferenceMember {
+
     @Id
     @GeneratedValue
     private Long id;
@@ -25,5 +26,11 @@ public class UserConferenceMember {
     @JsonIgnore
     @JoinColumn(name = "conferenceId")
     private Conference conferenceMember;
+
+
+    public UserConferenceMember(User user, Conference conferenceMember) {
+        this.user = user;
+        this.conferenceMember = conferenceMember;
+    }
 
 }

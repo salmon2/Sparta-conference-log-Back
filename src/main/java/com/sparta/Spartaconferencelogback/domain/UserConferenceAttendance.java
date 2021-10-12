@@ -14,6 +14,7 @@ import static javax.persistence.FetchType.LAZY;
 @Setter
 @NoArgsConstructor
 public class UserConferenceAttendance {
+
     @Id
     @GeneratedValue
     private Long id;

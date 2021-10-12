@@ -15,7 +15,7 @@ import static javax.persistence.FetchType.LAZY;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Conference {
+public class Conference extends Timestamped{
     @Id
     @GeneratedValue
     private Long id;
@@ -37,4 +37,10 @@ public class Conference {
     @JsonIgnore
     private Date date;
 
+    public Conference(String title, String purpose, String contents, Date date) {
+        this.title = title;
+        this.purpose = purpose;
+        this.contents = contents;
+        this.date = date;
+    }
 }
