@@ -8,6 +8,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class ResponseMsg {
+
     private Long statusCode;
     private String msg;
 }

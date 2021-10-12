@@ -46,7 +46,7 @@ public class ConferenceController {
 
         ResponseMsg responseMsg = new ResponseMsg(200L, "회의 업데이트 완료");
 
-        return responseMsg
+        return responseMsg;
     }
 
 }
