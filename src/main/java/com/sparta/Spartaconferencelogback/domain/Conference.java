@@ -1,5 +1,6 @@
 package com.sparta.Spartaconferencelogback.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -7,6 +8,8 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import static javax.persistence.FetchType.LAZY;
 
 @Entity
 @NoArgsConstructor
@@ -29,9 +32,9 @@ public class Conference {
 
     private String contents;
 
-    @OneToOne(mappedBy = "conference", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = LAZY)
+    @JoinColumn(name = "dateId")
+    @JsonIgnore
     private Date date;
-
-
 
 }

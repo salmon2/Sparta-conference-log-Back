@@ -22,9 +22,7 @@ public class Date {
 
     private String day;
 
-    @OneToOne
-    @JoinColumn(name = "conferenceId")
-    @JsonIgnore
+    @OneToMany(mappedBy = "conferenceMember", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Conference conference;
 
 }
