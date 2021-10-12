@@ -49,6 +49,10 @@ dependencies {
 	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
 
 
+	implementation group: 'org.json', name: 'json', version: '20160810'
+
+	//test code
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 
 }
