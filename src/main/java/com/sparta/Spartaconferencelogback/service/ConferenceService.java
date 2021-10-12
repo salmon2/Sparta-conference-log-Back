@@ -7,5 +7,5 @@ import com.sparta.Spartaconferencelogback.security.UserDetailsImpl;
 
 public interface ConferenceService {
     Conference save(ConferenceRequestDto conferenceRequestDto, UserDetailsImpl userDetails);
-
 }
+

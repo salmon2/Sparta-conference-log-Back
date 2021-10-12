@@ -60,7 +60,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // h2-console 사용에 대한 허용 (CSRF, FrameOptions 무시)
         web
                 .ignoring()
-                .antMatchers("/h2-console/**");
+                .antMatchers("/h2-console/**")
+                //개발 단계 모든 Url 허용
+                .antMatchers("/**");
     }
 
     @Override
@@ -123,13 +125,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         List<String> skipPathList = new ArrayList<>();
 
 
+        // Static 정보 접근 허용
+        skipPathList.add("GET,/images/**");
+        skipPathList.add("GET,/css/**");
+
         // h2-console 허용
         skipPathList.add("GET,/h2-console/**");
         skipPathList.add("POST,/h2-console/**");
         // 회원 관리 API 허용
         skipPathList.add("GET,/user/**");
         skipPathList.add("POST,/user/signup");
+
         skipPathList.add("GET,/");
+        skipPathList.add("GET,/basic.js");
+
+        skipPathList.add("GET,/favicon.ico");
 
 
         FilterSkipMatcher matcher = new FilterSkipMatcher(
