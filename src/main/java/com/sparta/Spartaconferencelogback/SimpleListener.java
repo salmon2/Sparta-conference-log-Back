@@ -37,7 +37,7 @@ public class SimpleListener implements ApplicationListener<ApplicationStartedEve
         em.persist(user2);
 
         for(int i = 0; i<30; i++){
-            Date date = new Date(2021L, 10L, i + 1L);
+            Date date = new Date(2021L, 10L, i + 1L, 10L, 00L);
             em.persist(date);
 
             for(int j = 0; j<2; j++) {

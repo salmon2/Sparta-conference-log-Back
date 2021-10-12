@@ -22,6 +22,7 @@ public class Conference extends Timestamped{
 
     private String title;
 
+
     @OneToMany(mappedBy = "conferenceMember", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<UserConferenceMember> member = new ArrayList<>();
 
