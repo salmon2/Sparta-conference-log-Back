@@ -7,6 +7,7 @@ import com.sparta.Spartaconferencelogback.dto.UserInfoDto;
 import com.sparta.Spartaconferencelogback.dto.UserList;
 import com.sparta.Spartaconferencelogback.security.UserDetailsImpl;
 import com.sparta.Spartaconferencelogback.service.UserService;
+import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/user")
+@Api(tags={"유저저 관련 APi"})
 public class UserController {
 
     private final UserService userService;
@@ -28,7 +29,7 @@ public class UserController {
      */
 
 
-    @PostMapping("/signup")
+    @PostMapping("/user")
     public ResponseMsg registerUserPost(@RequestBody SignupRequestDto requestDto) {
         try {
             userService.registerUser(requestDto);
@@ -38,14 +39,6 @@ public class UserController {
         return new ResponseMsg(200L, "success");
 
     }
-
-
-    @PostMapping("/user/signup")
-    public String registerUser(SignupRequestDto requestDto) {
-        userService.registerUser(requestDto);
-        return "redirect:/user/loginView";
-    }
-
 
     @PostMapping("/user/userinfo")
     @ResponseBody
@@ -79,7 +72,7 @@ public class UserController {
 
     }
 
-    @PostMapping("/nickname")
+    @PostMapping("/user/nickname")
     public ResponseMsg checkDupNickname(@RequestBody String nickname) {
         try {
             userService.checkDuplicateByNickname(nickname);

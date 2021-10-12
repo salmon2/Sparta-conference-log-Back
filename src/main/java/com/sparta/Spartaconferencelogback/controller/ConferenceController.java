@@ -6,12 +6,14 @@ import com.sparta.Spartaconferencelogback.dto.ConferenceUpdateRequestDto;
 import com.sparta.Spartaconferencelogback.dto.ResponseMsg;
 import com.sparta.Spartaconferencelogback.security.UserDetailsImpl;
 import com.sparta.Spartaconferencelogback.service.ConferenceService;
+import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
+@Api(tags={"회의글 관련 APi"})
 public class ConferenceController {
 
     private final ConferenceService conferenceService;
