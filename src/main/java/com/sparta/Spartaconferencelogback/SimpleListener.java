@@ -23,16 +23,22 @@ public class SimpleListener implements ApplicationListener<ApplicationStartedEve
     @Autowired
     private EntityManagerFactory entityManagerFactory;
 
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
     @Override
     @Transactional
     public void onApplicationEvent(ApplicationStartedEvent event) {
         EntityManager em = entityManagerFactory.createEntityManager();
+
+
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
 
-        User user1 = new User("user1", "user1", "asdf");
-        User user2 = new User("user2", "user2", "asdf");
-        User user3 = new User("user3", "user3", "asdf");
+        User user1 = new User("user1", "user1", passwordEncoder.encode("asdf"));
+
+        User user2 = new User("user2", "user2", passwordEncoder.encode("asdf"));
+        User user3 = new User("user3", "user3", passwordEncoder.encode("asdf"));
 
         em.persist(user1);
         em.persist(user2);

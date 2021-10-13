@@ -6,14 +6,17 @@ import com.sparta.Spartaconferencelogback.dto.ResponseMsg;
 import com.sparta.Spartaconferencelogback.dto.SignupRequestDto;
 import com.sparta.Spartaconferencelogback.dto.userdtos.LoginRequestDto;
 import com.sparta.Spartaconferencelogback.dto.userdtos.TokenResponse;
+import com.sparta.Spartaconferencelogback.dto.userdtos.UserInfoDto;
 import com.sparta.Spartaconferencelogback.dto.userdtos.UserList;
 import com.sparta.Spartaconferencelogback.repository.UserRepository;
 import com.sparta.Spartaconferencelogback.security.JwtTokenProvider;
+import com.sparta.Spartaconferencelogback.security.UserDetailsImpl;
 import com.sparta.Spartaconferencelogback.service.UserService;
 import com.sparta.Spartaconferencelogback.service.UserServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -57,7 +60,6 @@ public class UserController {
             tokenResponse.setMsg(e.getMessage());
         }
         return tokenResponse;
-
     }
 
 
@@ -92,4 +94,14 @@ public class UserController {
         }
         return new ResponseMsg(200L, "success");
     }
+
+    @GetMapping("/user")
+    public UserInfoDto userInfoDto(@AuthenticationPrincipal UserDetailsImpl userDetails){
+        System.out.println("userDetails = " + userDetails);
+
+        UserInfoDto userInfoDto = new UserInfoDto(userDetails.getUsername(), userDetails.getNickname());
+
+        return userInfoDto;
+    }
+
 }

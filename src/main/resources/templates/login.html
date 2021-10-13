@@ -22,6 +22,11 @@
   <button id="login-id-btn" onclick="location.href='/user/signup'">
     회원 가입하기
   </button>
+
+  <button id="login-id-btn1" onclick= "test()">
+    버튼
+  </button>
+
   <div>
     <div class="login-id-label">아이디</div>
     <input type="text" name="username" id="username" class="login-input-box">
@@ -35,6 +40,7 @@
 </div>
 </body>
 <script>
+
   const href = location.href;
   const queryString = href.substring(href.indexOf("?")+1)
   if (queryString === 'error') {
@@ -52,8 +58,8 @@
         password: $('#password').val()
       }),
       success: function (response, textStatus, request) {
-        const jwtToken = request.getResponseHeader("Authorization");
-        console.log(response)
+        const jwtToken = response.token
+        console.log(jwtToken)
         if (jwtToken) {
           $.cookie("token", jwtToken);
           $.ajaxSetup({
@@ -68,5 +74,25 @@
       }
     })
   }
+
+  function test(){
+    $.ajax({
+      type: "GET",
+      url: `/user`,
+      headers:{
+        'Authorization': $.cookie('token')
+      },
+      contentType: "application/json",
+      success: function (response, textStatus, request) {
+        console.log(response)
+      }
+    })
+  }
+
+
+
+
+
+
 </script>
 </html>

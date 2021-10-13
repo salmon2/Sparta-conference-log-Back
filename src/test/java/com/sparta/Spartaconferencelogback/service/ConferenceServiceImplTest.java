@@ -13,16 +13,4 @@ class ConferenceServiceImplTest {
 
 
 
-    @Test
-    @DisplayName("회의 저장")
-    void conference_save() {
-        new UserIdRequestDto()
-
-
-        new ConferenceRequestDto("테스트 제목", "2021-11-10 10:00",
-                )
-
-
-
-    }
 }

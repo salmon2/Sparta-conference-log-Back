@@ -18,4 +18,8 @@ public class HomeController {
 
         return "index";
     }
+    @GetMapping("/user/loginView")
+    public String testLoginPage(){
+        return "login";
+    }
 }
