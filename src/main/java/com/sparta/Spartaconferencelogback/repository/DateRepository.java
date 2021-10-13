@@ -9,6 +9,6 @@ import java.util.Optional;
 
 @Repository
 public interface DateRepository extends JpaRepository<Date, Long> {
-    public Optional<Date> findAllByYearAndMonthAndDay(Long year, Long month, Long day);
+    public List<Date> findAllByYearAndMonthAndDay(Long year, Long month, Long day);
     public List<Date> findAllByYearAndMonth(Long year, Long month);
 }

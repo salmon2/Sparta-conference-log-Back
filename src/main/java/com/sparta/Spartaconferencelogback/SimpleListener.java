@@ -32,24 +32,23 @@ public class SimpleListener implements ApplicationListener<ApplicationStartedEve
 
         User user1 = new User("user1", "user1", "asdf");
         User user2 = new User("user2", "user2", "asdf");
+        User user3 = new User("user3", "user3", "asdf");
 
         em.persist(user1);
         em.persist(user2);
+        em.persist(user3);
 
         for(int i = 0; i<30; i++){
             Date date = new Date(2021L, 10L, i + 1L, 10L, 00L);
             em.persist(date);
 
             for(int j = 0; j<2; j++) {
-                Conference conference = new Conference("회의 " + j, "스터디", "회의 시러용", date);
-                em.persist(conference);
+                makeConference(em, user1, user2, date, "회의 " + j);
 
-                //회의 사람들
-                UserConferenceMember userConferenceMember1 = new UserConferenceMember(user1, conference);
-                em.persist(userConferenceMember1);
-
-                UserConferenceMember userConferenceMember2 = new UserConferenceMember(user2, conference);
-                em.persist(userConferenceMember2);
+                if( i == 15){
+                    makeConference(em, user1, user2, date, "테스트테스트");
+                    makeConference(em, user3, user2, date, "테스트테스트");
+                }
             }
         }
 
@@ -57,5 +56,16 @@ public class SimpleListener implements ApplicationListener<ApplicationStartedEve
 
         em.getTransaction().commit();
 
+    }
+
+    private void makeConference(EntityManager em, User user1, User user2, Date date, String 테스트테스트) {
+        Conference conference3 = new Conference(테스트테스트, "스터디", "회의 시러용", date);
+        em.persist(conference3);
+        //회의 사람들
+        UserConferenceMember userConferenceMember3 = new UserConferenceMember(user1, conference3);
+        em.persist(userConferenceMember3);
+
+        UserConferenceMember userConferenceMember4 = new UserConferenceMember(user2, conference3);
+        em.persist(userConferenceMember4);
     }
 }

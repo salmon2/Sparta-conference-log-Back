@@ -12,7 +12,7 @@ public interface DateService {
     public DateCountResponseDto getMyConferenceThatMonth(Long year, Long month, UserDetailsImpl userDetails);
 
     //해당 날짜에 등록되어있는 회의 리스트 조회
-    public DateListResponseDto getAllConferenceThatDate(Long year, Long month, Long day, UserDetailsImpl userDetails);
+    public DateListResponseDto getAllConferenceThatDate(Long year, Long month, Long day);
 
     //내가 참여한 회의 리스트 조회
     public DateListResponseDto getMyConferenceThatDate(Long year, Long month, Long day, UserDetailsImpl userDetails);

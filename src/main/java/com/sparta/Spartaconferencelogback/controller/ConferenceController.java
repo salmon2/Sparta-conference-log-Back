@@ -38,7 +38,7 @@ public class ConferenceController {
     }
 
     @DeleteMapping("/conference")
-    @ApiOperation(value="Conference 정보 삭제", notes="Conference 내용을 받아 삭제한다.")
+    @ApiOperation(value="Conference 정보 삭제 (완성) ", notes="Conference 내용을 받아 삭제한다.")
     public ResponseMsg conferenceDelete(@RequestParam Long conferenceId){
         conferenceService.delete(conferenceId);
 
@@ -47,7 +47,7 @@ public class ConferenceController {
     }
 
     @PutMapping("/conference")
-    @ApiOperation(value="Conference 정보 업데이트", notes="Conference 내용을 받아 수정한다.")
+    @ApiOperation(value="Conference 정보 업데이트 (완성) ", notes="Conference 내용을 받아 수정한다.")
     public ResponseMsg conferenceUpdate(@RequestParam Long conferenceId,
                                         @RequestBody ConferenceUpdateRequestDto conferenceUpdateRequestDto){
         conferenceService.update(conferenceId, conferenceUpdateRequestDto);
@@ -57,7 +57,7 @@ public class ConferenceController {
         return responseMsg;
     }
 
-    @ApiOperation(value="회의 단건 정보 조회", notes="해당 회의의 상세 내용을 반환한다.")
+    @ApiOperation(value="회의 단건 정보 조회 (완성)", notes="해당 회의의 상세 내용을 반환한다.")
     @GetMapping("/conferenceDetail")
     public ConferenceDetailResponseDto getConferenceDetail(@RequestParam Long conferenceId) {
         return conferenceService.getConferenceDetail(conferenceId);

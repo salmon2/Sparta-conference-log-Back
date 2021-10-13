@@ -1,7 +1,9 @@
 package com.sparta.Spartaconferencelogback.controller;
 
+import com.sparta.Spartaconferencelogback.domain.User;
 import com.sparta.Spartaconferencelogback.dto.DateCountResponseDto;
 import com.sparta.Spartaconferencelogback.dto.DateListResponseDto;
+import com.sparta.Spartaconferencelogback.repository.UserRepository;
 import com.sparta.Spartaconferencelogback.security.UserDetailsImpl;
 import com.sparta.Spartaconferencelogback.service.DateService;
 import io.swagger.annotations.Api;
@@ -19,34 +21,47 @@ import org.springframework.web.bind.annotation.RestController;
 public class DateController {
 
     private final DateService dateService;
+    private final UserRepository userRepository;
 
-    @ApiOperation(value="해당 월의 모든 회의를 날마다 개수로 표현 ", notes="그 달의 날짜별로 회의 개수를 반환한다.")
+    @ApiOperation(value="해당 월의 모든 회의를 날마다 개수로 표현 (완성) ", notes="그 달의 날짜별로 회의 개수를 반환한다.")
     @GetMapping("/main/alllist")
     public DateCountResponseDto GetAllConferenceThatMonth(@RequestParam Long year, @RequestParam Long month) {
         return dateService.getAllConferenceThatMonth(year, month);
     }
 
-    @ApiOperation(value="내가 참여한 일정만 보기", notes="그 달의 날짜별로 자신이 참여한 회의 개수를 반환한다.")
+    @ApiOperation(value="내가 참여한 일정만 보기 (완성)", notes="그 달의 날짜별로 자신이 참여한 회의 개수를 반환한다.")
     @GetMapping("/main/mylist")
-    public DateCountResponseDto getMyConferenceThatMonth(@RequestParam Long year, @RequestParam Long month,
-                                                         @AuthenticationPrincipal UserDetailsImpl userDetails) {
+    public DateCountResponseDto getMyConferenceThatMonth(@RequestParam Long year,
+                                                         @RequestParam Long month,
+                                                         @AuthenticationPrincipal UserDetailsImpl userDetails
+                                                         ) {
+
+//        User findUser = userRepository.getById(1L);
+//        UserDetailsImpl dummyUserDetails = new UserDetailsImpl(findUser);
+
         return dateService.getMyConferenceThatMonth(year, month, userDetails);
     }
 
-    @ApiOperation(value="해당 날짜 회의 리스트 조회", notes="해당 날짜에 등록되어있는 회의 리스트를 반환한다.")
-    //해당 날짜에 등록되어있는 회의 리스트 조회
+
+    @ApiOperation(value="해당 날짜 회의 리스트 조회 (완성) ", notes="해당 날짜에 등록되어있는 회의 리스트를 반환한다.")
     @GetMapping("/conference")
     public DateListResponseDto getAllConferenceThatDate(@RequestParam Long year, @RequestParam Long month,
                                                         @RequestParam Long day,
                                                         @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        return dateService.getAllConferenceThatDate(year, month, day, userDetails);
+        DateListResponseDto result = dateService.getAllConferenceThatDate(year, month, day);
+        return result;
     }
 
-    @ApiOperation(value="내가 참여한 회의 리스트 조회", notes="해당 날짜에 내가 참여한 회의 리스트를 반환한다.")
+    //완성
+    @ApiOperation(value="내가 참여한 회의 리스트 조회 (완성) ", notes="해당 날짜에 내가 참여한 회의 리스트를 반환한다.")
     @GetMapping("/conference/my")
-    public DateListResponseDto getMyConferenceThatDate(@RequestParam Long year, @RequestParam Long month,
+    public DateListResponseDto getMyConferenceThatDate(@RequestParam Long year,
+                                                       @RequestParam Long month,
                                                        @RequestParam Long day,
-                                                       UserDetailsImpl userDetails) {
+                                                       @AuthenticationPrincipal UserDetailsImpl userDetails) {
+//        User findUser = userRepository.getById(1L);
+//        UserDetailsImpl dummyUserDetails = new UserDetailsImpl(findUser);
+
         return dateService.getMyConferenceThatDate(year, month, day, userDetails);
     }
 

@@ -8,6 +8,7 @@ import com.sparta.Spartaconferencelogback.dto.UserList;
 import com.sparta.Spartaconferencelogback.security.UserDetailsImpl;
 import com.sparta.Spartaconferencelogback.service.UserService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +26,6 @@ public class UserController {
 
     /**
      * 예외처리, 반환 방법 합의 후 결정하기
-     *
      */
 
 
@@ -50,6 +50,7 @@ public class UserController {
     }
 
     @GetMapping("/user/list")
+    @ApiOperation(value="회원 리스트 조회 ", notes="회원 리스트 조회 ")
     @ResponseBody
     public UserList userList(){
         UserList userList = userService.getUserList();
