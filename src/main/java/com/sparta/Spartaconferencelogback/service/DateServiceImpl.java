@@ -65,6 +65,7 @@ public class DateServiceImpl implements DateService {
 //                dayCountList.add(dayCountResponseDto);
 //            }
 //        }
+
         DateCountResponseDto responseDto = new DateCountResponseDto(year, month, dayCountList);
         return responseDto;
     }
@@ -142,6 +143,7 @@ public class DateServiceImpl implements DateService {
 //
 //            }
 //        }
+
         DateListResponseDto responseDto = new DateListResponseDto(conferenceListResponseDtoList);
         return responseDto;
     }
