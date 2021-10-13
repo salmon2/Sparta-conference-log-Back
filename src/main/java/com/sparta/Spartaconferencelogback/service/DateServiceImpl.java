@@ -3,6 +3,7 @@ package com.sparta.Spartaconferencelogback.service;
 import com.sparta.Spartaconferencelogback.domain.*;
 import com.sparta.Spartaconferencelogback.dto.*;
 import com.sparta.Spartaconferencelogback.repository.DateRepository;
+import com.sparta.Spartaconferencelogback.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -42,7 +43,9 @@ public class DateServiceImpl implements DateService {
     }
 
     //내가 참여한 일정만 보기
-    public DateCountResponseDto getMyConferenceThatMonth(Long year, Long month, Long userId) {
+    public DateCountResponseDto getMyConferenceThatMonth(Long year, Long month, UserDetailsImpl userDetails) {
+        Long userId = userDetails.getUserId(); //로그인한 계정 userId
+
         Optional<Date> date = dateRepository.findAllByYearAndMonth(year, month);
 
         List<DayCountResponseDto> dayCountList = new ArrayList<>();
@@ -73,7 +76,9 @@ public class DateServiceImpl implements DateService {
     }
 
     //해당 날짜에 등록되어있는 회의 리스트 조회
-    public DateListResponseDto getAllConferenceThatDate(Long year, Long month, Long day, Long userId) {
+    public DateListResponseDto getAllConferenceThatDate(Long year, Long month, Long day, UserDetailsImpl userDetails) {
+        Long userId = userDetails.getUserId(); //로그인한 계정 userId
+
         Optional<Date> dateList = dateRepository.findAllByYearAndMonth(year, month);
         Long conferenceId = 0L;     //회의 번호
         String title = "";          //회의 제목
@@ -106,7 +111,9 @@ public class DateServiceImpl implements DateService {
     }
 
     //내가 참여한 회의 리스트 조회
-    public DateListResponseDto getMyConferenceThatDate(Long year, Long month, Long day, Long userId) {
+    public DateListResponseDto getMyConferenceThatDate(Long year, Long month, Long day, UserDetailsImpl userDetails) {
+        Long userId = userDetails.getUserId(); //로그인한 계정 userId
+
         Optional<Date> dateList = dateRepository.findAllByYearAndMonth(year, month);
         Long conferenceId = 0L;     //회의 번호
         String title = "";          //회의 제목

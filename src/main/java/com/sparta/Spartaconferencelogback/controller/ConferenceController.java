@@ -1,6 +1,7 @@
 package com.sparta.Spartaconferencelogback.controller;
 
 import com.sparta.Spartaconferencelogback.domain.Conference;
+import com.sparta.Spartaconferencelogback.dto.ConferenceDetailResponseDto;
 import com.sparta.Spartaconferencelogback.dto.ConferenceRequestDto;
 import com.sparta.Spartaconferencelogback.dto.ConferenceUpdateRequestDto;
 import com.sparta.Spartaconferencelogback.dto.ResponseMsg;
@@ -56,4 +57,9 @@ public class ConferenceController {
         return responseMsg;
     }
 
+    @ApiOperation(value="회의 단건 정보 조회", notes="해당 회의의 상세 내용을 반환한다.")
+    @GetMapping("/conferenceDetail")
+    public ConferenceDetailResponseDto getConferenceDetail(@RequestParam Long conferenceId) {
+        return conferenceService.getConferenceDetail(conferenceId);
+    }
 }
