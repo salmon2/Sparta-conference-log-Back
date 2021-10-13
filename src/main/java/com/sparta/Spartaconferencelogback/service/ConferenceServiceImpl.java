@@ -95,7 +95,7 @@ public class ConferenceServiceImpl implements ConferenceService{
         findConference.setTitle(conferenceUpdateRequestDto.getTitle());
         findConference.setContents(conferenceUpdateRequestDto.getContents());
         findConference.setPurpose(conferenceUpdateRequestDto.getPurpose());
-
+    }
 
     //회의 단건 정보 조회
     @Override
