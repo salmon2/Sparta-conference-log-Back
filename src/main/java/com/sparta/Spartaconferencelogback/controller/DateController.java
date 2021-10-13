@@ -19,7 +19,7 @@ public class DateController {
 
     private final DateService dateService;
 
-    @ApiOperation(value="모든 회의 목록 조회", notes="그 달의 날짜별로 회의 개수를 반환한다.")
+    @ApiOperation(value="해당 월의 모든 회의를 날마다 개수로 표현 ", notes="그 달의 날짜별로 회의 개수를 반환한다.")
     @GetMapping("/main/alllist")
     public DateCountResponseDto GetAllConferenceThatMonth(@RequestParam Long year, @RequestParam Long month) {
         return dateService.getAllConferenceThatMonth(year, month);
