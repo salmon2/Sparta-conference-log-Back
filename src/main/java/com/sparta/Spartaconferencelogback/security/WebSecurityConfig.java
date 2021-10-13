@@ -60,14 +60,33 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // h2-console 사용에 대한 허용 (CSRF, FrameOptions 무시)
         web
                 .ignoring()
-                .antMatchers("/h2-console/**");
+                .antMatchers("/h2-console/**")
                 //개발 단계 모든 Url 허용
-//                .antMatchers("/**");
+                .antMatchers("/**");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
+
+        /**
+         * @Configuration
+         * @EnableWebSecurity
+         * public class SecurityConfig extends WebSecurityConfigurerAdapter {
+         *
+         *     @Override
+         *     protected void configure(HttpSecurity http) throws Exception {
+         *         http
+         *                 .csrf()
+         *                 .disable();
+         *
+         *         http
+         *                 .headers()
+         *                 .frameOptions()
+         *                 .disable();
+         *     }
+         * }
+         */
 
         // 서버에서 인증은 JWT로 인증하기 때문에 Session의 생성을 막습니다.
         http
