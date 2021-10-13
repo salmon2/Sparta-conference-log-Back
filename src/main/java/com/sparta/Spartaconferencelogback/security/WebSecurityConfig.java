@@ -70,9 +70,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
 
         /**
-         * @Configuration
-         * @EnableWebSecurity
-         * public class SecurityConfig extends WebSecurityConfigurerAdapter {
+         * 개발단계 모든 api 접근 허용 다음부터는 이렇게
          *
          *     @Override
          *     protected void configure(HttpSecurity http) throws Exception {
