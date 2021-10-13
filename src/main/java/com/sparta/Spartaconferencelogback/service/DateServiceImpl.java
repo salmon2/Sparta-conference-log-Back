@@ -40,33 +40,33 @@ public class DateServiceImpl implements DateService {
 
     //내가 참여한 일정만 보기
     public DateCountResponseDto getMyConferenceThatMonth(Long year, Long month, UserDetailsImpl userDetails) {
-        Long userId = userDetails.getUserId(); //로그인한 계정 userId
+        String username = userDetails.getUsername(); //로그인한 계정 아이디
 
         List<Date> date = dateRepository.findAllByYearAndMonth(year, month);
 
+//        Optional<User> optionalUser = userRepository.findByUsername(username);
+//        List<UserConferenceMember> userConferenceMembers = optionalUser.get().getUserConferenceMembers();
+
         List<DayCountResponseDto> dayCountList = new ArrayList<>();
 
-//        if(date.isPresent()) {
-//            List<Conference> conferenceList = date.get().getConferences();
-//
-//            for(int i=0; i<conferenceList.size(); i++) {
-//                Conference conference = conferenceList.get(i);
-//                Long day = conference.getDate().getDay();   //일
-//                //회의에 포함된 사람들
-//                List<UserConferenceMember> userConferenceMemberList = conference.getMember();
-//
-//                int count = 0;                      //해당 날짜에 존재하는 회의 개수
-//                //현재 회의에 포함된 사람들을 하나씩 꺼내기
-//                for(UserConferenceMember member: userConferenceMemberList) {
-//                    //로그인한 사람과 회의에 포함된 사람들 중에서 비교했을 때 로그인한 계정이 존재하면
-//                    if(userId.equals(member.getUser().getId())) {
-//                        count++; //카운트 세기
-//                    }
-//                }
-//                DayCountResponseDto dayCountResponseDto = new DayCountResponseDto(day, count);
-//                dayCountList.add(dayCountResponseDto);
-//            }
-//        }
+        for(Date oneDate: date) {
+            List<Conference> conferences = oneDate.getConferences();
+
+            for(int i=0; i<conferences.size(); i++) {
+                Conference conference = conferences.get(i);
+                List<UserConferenceMember> members = conference.getMember();
+
+                for(int j=0; j<members.size(); j++) {
+                    String memberUsername = members.get(i).getUser().getUsername();
+                    if(memberUsername.equals(username)) {
+                        DayCountResponseDto dayCountResponseDto =
+                                                new DayCountResponseDto(oneDate.getDay(), conferences.size());
+                        dayCountList.add(dayCountResponseDto);
+                    }
+                }
+            }
+        }
+
         DateCountResponseDto responseDto = new DateCountResponseDto(year, month, dayCountList);
         return responseDto;
     }
@@ -115,12 +115,32 @@ public class DateServiceImpl implements DateService {
         String leader = "";         //회의를 만든 사람 nickname
         String date = "";           //날짜(YYYY/MM/DD)
 
+        DateListResponseDto responseDto = null;
+
         Optional<User> byUsername = userRepository.findByUsername(userDetails.getUsername());
-        List<UserConferenceAttendance> attendedConference = byUsername.get().getUserConferenceAttendances();
+        //List<UserConferenceAttendance> attendedConference = byUsername.get().getUserConferenceAttendances();
 
+        if(byUsername.isPresent()) {
+            List<UserConferenceMember> conferenceMemberList = byUsername.get().getUserConferenceMembers();
 
+            List<ConferenceListResponseDto> conferenceListResponseDtoList = new ArrayList<>();
 
-        List<ConferenceListResponseDto> conferenceListResponseDtoList = new ArrayList<>();
+            for(int i=0; i<conferenceMemberList.size(); i++) {
+                UserConferenceMember userConferenceMember = conferenceMemberList.get(i);
+                Conference conference = userConferenceMember.getConferenceMember();
+                conferenceId = conference.getId();
+                title = conference.getTitle();
+                //List<UserConferenceAttendance>의 가장 첫번째에 회의를 만든 사람 데이터가 담겨있다고 가정
+                leader = conference.getMember().get(0).getUser().getNickname();
+                date = year + "/" + month + "/" + day;
+
+                ConferenceListResponseDto conferenceListResponseDto =
+                                new ConferenceListResponseDto(conferenceId, title, leader, date);
+                conferenceListResponseDtoList.add(conferenceListResponseDto);
+            }
+
+            responseDto = new DateListResponseDto(conferenceListResponseDtoList);
+        }
 
 //        if(dateList.isPresent()) {
 //            List<Conference> conferenceList = dateList.get().getConferences();
@@ -149,7 +169,6 @@ public class DateServiceImpl implements DateService {
 //
 //            }
 //        }
-        DateListResponseDto responseDto = new DateListResponseDto(conferenceListResponseDtoList);
         return responseDto;
     }
 
