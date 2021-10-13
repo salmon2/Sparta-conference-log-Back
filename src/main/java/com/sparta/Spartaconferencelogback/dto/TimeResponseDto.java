@@ -4,14 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-public class DateCountResponseDto {
-    private Long year;
-    private Long month;
-    private List<DayCountResponseDto> data; //data = {day:day, count:count}
-
+public class TimeResponseDto {
+    private String hour;    //작성 시간 중 시
+    private String minute;  //작성 시간 중 분
+    private String second;  //작성 시간 중 초
 }
