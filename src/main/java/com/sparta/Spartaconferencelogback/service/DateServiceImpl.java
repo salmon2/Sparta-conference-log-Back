@@ -3,6 +3,7 @@ package com.sparta.Spartaconferencelogback.service;
 import com.sparta.Spartaconferencelogback.domain.*;
 import com.sparta.Spartaconferencelogback.dto.*;
 import com.sparta.Spartaconferencelogback.repository.DateRepository;
+import com.sparta.Spartaconferencelogback.repository.UserRepository;
 import com.sparta.Spartaconferencelogback.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ import java.util.Optional;
 public class DateServiceImpl implements DateService {
 
     private final DateRepository dateRepository;
+    private final UserRepository userRepository;
 
     //모든 회의 목록 조회(그 달의 모든 회의 목록)
     // 잘돌아감
@@ -112,6 +114,11 @@ public class DateServiceImpl implements DateService {
         String title = "";          //회의 제목
         String leader = "";         //회의를 만든 사람 nickname
         String date = "";           //날짜(YYYY/MM/DD)
+
+        Optional<User> byUsername = userRepository.findByUsername(userDetails.getUsername());
+        List<UserConferenceAttendance> attendedConference = byUsername.get().getUserConferenceAttendances();
+
+
 
         List<ConferenceListResponseDto> conferenceListResponseDtoList = new ArrayList<>();
 
