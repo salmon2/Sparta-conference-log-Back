@@ -7,6 +7,7 @@ import com.sparta.Spartaconferencelogback.dto.ResponseMsg;
 import com.sparta.Spartaconferencelogback.security.UserDetailsImpl;
 import com.sparta.Spartaconferencelogback.service.ConferenceService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,9 @@ public class ConferenceController {
         return responseMsg;
     }
 
+
     @PostMapping("/conference")
+    @ApiOperation(value="Conference 정보 생성(제목)", notes="Conference 내용을 받아 저장한다.(설명)")
     public ResponseMsg conferenceSave(@RequestBody ConferenceRequestDto conferenceRequestDto,
                                       @AuthenticationPrincipal UserDetailsImpl userDetails){
         Conference newConference = conferenceService.save(conferenceRequestDto, userDetails);
@@ -34,6 +37,7 @@ public class ConferenceController {
     }
 
     @DeleteMapping("/conference")
+    @ApiOperation(value="Conference 정보 삭제", notes="Conference 내용을 받아 삭제한다.")
     public ResponseMsg conferenceDelete(@RequestParam Long conferenceId){
         conferenceService.delete(conferenceId);
 
@@ -42,6 +46,7 @@ public class ConferenceController {
     }
 
     @PutMapping("/conference")
+    @ApiOperation(value="Conference 정보 업데이트", notes="Conference 내용을 받아 수정한다.")
     public ResponseMsg conferenceUpdate(@RequestParam Long conferenceId,
                                         @RequestBody ConferenceUpdateRequestDto conferenceUpdateRequestDto){
         conferenceService.update(conferenceId, conferenceUpdateRequestDto);

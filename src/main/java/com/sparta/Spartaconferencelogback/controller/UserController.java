@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
-@Api(tags={"유저저 관련 APi"})
+@Api(tags={"유저 관련 APi"})
 public class UserController {
 
     private final UserService userService;
