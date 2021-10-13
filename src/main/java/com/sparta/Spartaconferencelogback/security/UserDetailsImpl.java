@@ -16,8 +16,7 @@ public class UserDetailsImpl implements UserDetails {
     private String nickname;
     private String password;
 
-    public UserDetailsImpl(Long userId, String username, String nickname) {
-        this.userId = userId;
+    public UserDetailsImpl(String username, String nickname) {
         this.username = username;
         this.nickname = nickname;
     }

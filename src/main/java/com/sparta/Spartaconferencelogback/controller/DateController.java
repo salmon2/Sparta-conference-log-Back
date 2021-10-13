@@ -1,7 +1,7 @@
 package com.sparta.Spartaconferencelogback.controller;
 
-import com.sparta.Spartaconferencelogback.dto.DateCountResponseDto;
-import com.sparta.Spartaconferencelogback.dto.DateListResponseDto;
+import com.sparta.Spartaconferencelogback.dto.datedtos.DateCountResponseDto;
+import com.sparta.Spartaconferencelogback.dto.datedtos.DateListResponseDto;
 import com.sparta.Spartaconferencelogback.security.UserDetailsImpl;
 import com.sparta.Spartaconferencelogback.service.DateService;
 import io.swagger.annotations.Api;

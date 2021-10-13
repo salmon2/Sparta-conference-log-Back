@@ -1,9 +1,9 @@
 package com.sparta.Spartaconferencelogback.controller;
 
 import com.sparta.Spartaconferencelogback.domain.Conference;
-import com.sparta.Spartaconferencelogback.dto.ConferenceDetailResponseDto;
-import com.sparta.Spartaconferencelogback.dto.ConferenceRequestDto;
-import com.sparta.Spartaconferencelogback.dto.ConferenceUpdateRequestDto;
+import com.sparta.Spartaconferencelogback.dto.confefencedtos.ConferenceDetailResponseDto;
+import com.sparta.Spartaconferencelogback.dto.confefencedtos.ConferenceRequestDto;
+import com.sparta.Spartaconferencelogback.dto.confefencedtos.ConferenceUpdateRequestDto;
 import com.sparta.Spartaconferencelogback.dto.ResponseMsg;
 import com.sparta.Spartaconferencelogback.security.UserDetailsImpl;
 import com.sparta.Spartaconferencelogback.service.ConferenceService;

@@ -7,10 +7,10 @@ import lombok.Setter;
 
 import java.util.List;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-public class UserList {
-    private List<UserListResponseDto> userList;
+public class GroupList {
+    private List<GroupListResponseDto> groupList;
 }

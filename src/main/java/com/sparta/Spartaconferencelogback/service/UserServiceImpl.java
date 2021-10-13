@@ -4,8 +4,9 @@ import com.sparta.Spartaconferencelogback.domain.Group;
 import com.sparta.Spartaconferencelogback.domain.User;
 import com.sparta.Spartaconferencelogback.domain.userGroup;
 import com.sparta.Spartaconferencelogback.dto.SignupRequestDto;
-import com.sparta.Spartaconferencelogback.dto.UserList;
-import com.sparta.Spartaconferencelogback.dto.UserListResponseDto;
+import com.sparta.Spartaconferencelogback.dto.userdtos.LoginRequestDto;
+import com.sparta.Spartaconferencelogback.dto.userdtos.UserList;
+import com.sparta.Spartaconferencelogback.dto.userdtos.UserListResponseDto;
 import com.sparta.Spartaconferencelogback.repository.UserRepository;
 import com.sparta.Spartaconferencelogback.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
@@ -62,11 +63,7 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    /**
-     * 비밀번호 유효성 검사
-     * 4~10자리 영어, 숫자, 특수문자 포함.
-     * @param password
-     */
+    // 비밀번호 유효성 검사 4~10자리 영어, 숫자, 특수문자 포함.
     private void isValidatePassword(String password) {
         final int MIN = 4;
         final int MAX = 10;
@@ -78,10 +75,7 @@ public class UserServiceImpl implements UserService {
 
     }
 
-    /**
-     * 모든 user list 추출.
-     * @return UserList
-     */
+    // 모든 user list 추출.
     public UserList getUserList() {
         List<User> all = userRepository.findAll();
 
@@ -97,9 +91,7 @@ public class UserServiceImpl implements UserService {
         return newUserList;
     }
 
-    /**
-     * group에 포함된 그룹의 user list 추출
-     */
+    // group에 포함된 그룹의 user list 추출
     public UserList findUserByGroup(Group group) {
         List<userGroup> userGroups = group.getUserGroups();
         List<UserListResponseDto> userListResponseDtos = new ArrayList<>();
@@ -112,12 +104,7 @@ public class UserServiceImpl implements UserService {
         return newUserList;
     }
 
-    /**
-     * 내가 조인한 그룹의 유저들 추출
-     * @param userDetails
-     * @return
-     */
-
+    // 내가 조인한 그룹의 유저들 추출
     public UserList findUserByJoinedGroup(UserDetailsImpl userDetails) {
         User user = findByUsername(userDetails.getUsername());
         //userlist 생성용
@@ -132,16 +119,26 @@ public class UserServiceImpl implements UserService {
     }
 
 
-    /**
-     * username으로 user 찾기
-     * @param username
-     * @return
-     */
+    // username으로 user 찾기
     @Override
     public User findByUsername(String username) {
         return userRepository
                 .findByUsername(username)
                 .orElseThrow(()-> new UsernameNotFoundException("해당하는 id의 유저가 없습니다."));
+    }
+
+    @Override
+    public User userLogin(LoginRequestDto loginRequestDto) {
+        User user = userRepository
+                .findByUsername(loginRequestDto.getUsername())
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 아이디 입니다."));
+
+        if (!passwordEncoder.matches(loginRequestDto.getPassword(), user.getPassword())) {
+            throw new IllegalArgumentException("비밀번호를 확인하세요");
+        }
+        return user;
+
+
     }
 
 

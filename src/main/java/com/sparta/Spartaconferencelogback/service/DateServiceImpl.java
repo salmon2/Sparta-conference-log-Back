@@ -1,7 +1,10 @@
 package com.sparta.Spartaconferencelogback.service;
 
 import com.sparta.Spartaconferencelogback.domain.*;
-import com.sparta.Spartaconferencelogback.dto.*;
+import com.sparta.Spartaconferencelogback.dto.confefencedtos.ConferenceListResponseDto;
+import com.sparta.Spartaconferencelogback.dto.datedtos.DateCountResponseDto;
+import com.sparta.Spartaconferencelogback.dto.datedtos.DateListResponseDto;
+import com.sparta.Spartaconferencelogback.dto.datedtos.DayCountResponseDto;
 import com.sparta.Spartaconferencelogback.repository.DateRepository;
 import com.sparta.Spartaconferencelogback.repository.UserRepository;
 import com.sparta.Spartaconferencelogback.security.UserDetailsImpl;

@@ -1,6 +1,7 @@
-package com.sparta.Spartaconferencelogback.dto;
+package com.sparta.Spartaconferencelogback.dto.confefencedtos;
 
 import com.sparta.Spartaconferencelogback.domain.UserConferenceAttendance;
+import com.sparta.Spartaconferencelogback.dto.TimeResponseDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

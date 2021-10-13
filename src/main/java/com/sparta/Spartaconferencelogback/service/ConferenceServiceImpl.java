@@ -2,6 +2,10 @@ package com.sparta.Spartaconferencelogback.service;
 
 import com.sparta.Spartaconferencelogback.domain.*;
 import com.sparta.Spartaconferencelogback.dto.*;
+import com.sparta.Spartaconferencelogback.dto.confefencedtos.ConferenceDetailResponseDto;
+import com.sparta.Spartaconferencelogback.dto.confefencedtos.ConferenceRequestDto;
+import com.sparta.Spartaconferencelogback.dto.confefencedtos.ConferenceUpdateRequestDto;
+import com.sparta.Spartaconferencelogback.dto.userdtos.UserIdRequestDto;
 import com.sparta.Spartaconferencelogback.repository.*;
 import com.sparta.Spartaconferencelogback.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
