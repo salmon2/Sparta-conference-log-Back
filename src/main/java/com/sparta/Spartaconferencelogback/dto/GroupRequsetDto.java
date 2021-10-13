@@ -3,13 +3,13 @@ package com.sparta.Spartaconferencelogback.dto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-public class ConferenceListResponseDto {
-    private Long conferenceId;
+public class GroupRequsetDto {
     private String title;
-    private String leader;
-    private String date;
+    private String username;
 }

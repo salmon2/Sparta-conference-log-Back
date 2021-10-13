@@ -1,4 +1,4 @@
-package com.sparta.Spartaconferencelogback.dto;
+package com.sparta.Spartaconferencelogback.dto.userdtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

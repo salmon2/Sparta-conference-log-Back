@@ -1,7 +1,7 @@
 package com.sparta.Spartaconferencelogback.service;
 
-import com.sparta.Spartaconferencelogback.dto.DateCountResponseDto;
-import com.sparta.Spartaconferencelogback.dto.DateListResponseDto;
+import com.sparta.Spartaconferencelogback.dto.datedtos.DateCountResponseDto;
+import com.sparta.Spartaconferencelogback.dto.datedtos.DateListResponseDto;
 import com.sparta.Spartaconferencelogback.security.UserDetailsImpl;
 
 public interface DateService {

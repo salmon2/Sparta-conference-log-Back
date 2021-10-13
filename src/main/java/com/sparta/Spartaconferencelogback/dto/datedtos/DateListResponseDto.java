@@ -1,5 +1,6 @@
-package com.sparta.Spartaconferencelogback.dto;
+package com.sparta.Spartaconferencelogback.dto.datedtos;
 
+import com.sparta.Spartaconferencelogback.dto.confefencedtos.ConferenceListResponseDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

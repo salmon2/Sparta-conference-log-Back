@@ -1,9 +1,9 @@
 package com.sparta.Spartaconferencelogback.controller;
 
-import com.sparta.Spartaconferencelogback.domain.User;
-import com.sparta.Spartaconferencelogback.dto.DateCountResponseDto;
-import com.sparta.Spartaconferencelogback.dto.DateListResponseDto;
-import com.sparta.Spartaconferencelogback.repository.UserRepository;
+
+import com.sparta.Spartaconferencelogback.dto.datedtos.DateCountResponseDto;
+import com.sparta.Spartaconferencelogback.dto.datedtos.DateListResponseDto;
+
 import com.sparta.Spartaconferencelogback.security.UserDetailsImpl;
 import com.sparta.Spartaconferencelogback.service.DateService;
 import io.swagger.annotations.Api;
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class DateController {
 
     private final DateService dateService;
-    private final UserRepository userRepository;
+//    private final UserRepository userRepository;
 
     @ApiOperation(value="해당 월의 모든 회의를 날마다 개수로 표현 (완성) ", notes="그 달의 날짜별로 회의 개수를 반환한다.")
     @GetMapping("/main/alllist")

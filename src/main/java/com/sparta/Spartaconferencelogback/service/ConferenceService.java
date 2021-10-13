@@ -2,11 +2,11 @@ package com.sparta.Spartaconferencelogback.service;
 
 
 import com.sparta.Spartaconferencelogback.domain.Conference;
-import com.sparta.Spartaconferencelogback.dto.ConferenceRequestDto;
-import com.sparta.Spartaconferencelogback.dto.ConferenceUpdateRequestDto;
+import com.sparta.Spartaconferencelogback.dto.confefencedtos.ConferenceRequestDto;
+import com.sparta.Spartaconferencelogback.dto.confefencedtos.ConferenceUpdateRequestDto;
 import com.sparta.Spartaconferencelogback.security.UserDetailsImpl;
 
-import com.sparta.Spartaconferencelogback.dto.ConferenceDetailResponseDto;
+import com.sparta.Spartaconferencelogback.dto.confefencedtos.ConferenceDetailResponseDto;
 
 public interface ConferenceService {
     Conference save(ConferenceRequestDto conferenceRequestDto, UserDetailsImpl userDetails);
