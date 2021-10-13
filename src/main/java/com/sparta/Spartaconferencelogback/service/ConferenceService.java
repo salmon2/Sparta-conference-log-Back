@@ -11,7 +11,7 @@ import com.sparta.Spartaconferencelogback.dto.ConferenceDetailResponseDto;
 public interface ConferenceService {
     Conference save(ConferenceRequestDto conferenceRequestDto, UserDetailsImpl userDetails);
     void delete(Long conferenceId);
-    ConferenceDetailResponseDto update(Long conferenceId, ConferenceUpdateRequestDto conferenceUpdateRequestDto);
+    Conference update(Long conferenceId, ConferenceUpdateRequestDto conferenceUpdateRequestDto);
     //회의 단건 정보 조회
     public ConferenceDetailResponseDto getConferenceDetail(Long conferenceId);
 

@@ -87,7 +87,7 @@ public class ConferenceServiceImpl implements ConferenceService{
 
     @Override
     @Transactional
-    public ConferenceDetailResponseDto update(Long conferenceId, ConferenceUpdateRequestDto conferenceUpdateRequestDto) {
+    public Conference update(Long conferenceId, ConferenceUpdateRequestDto conferenceUpdateRequestDto) {
         Conference findConference = conferenceRepository.findById(conferenceId).orElseThrow(
                 () -> new NullPointerException("해당 하는 아이디의 회의글이 없습니다.")
         );
@@ -95,6 +95,8 @@ public class ConferenceServiceImpl implements ConferenceService{
         findConference.setTitle(conferenceUpdateRequestDto.getTitle());
         findConference.setContents(conferenceUpdateRequestDto.getContents());
         findConference.setPurpose(conferenceUpdateRequestDto.getPurpose());
+
+        return findConference;
     }
 
     //회의 단건 정보 조회
