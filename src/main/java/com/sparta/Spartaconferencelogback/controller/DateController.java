@@ -32,6 +32,7 @@ public class DateController {
     @ApiOperation(value="내가 참여한 일정만 보기 (완성)", notes="그 달의 날짜별로 자신이 참여한 회의 개수를 반환한다.")
     @GetMapping("/main/mylist")
     public DateCountResponseDto getMyConferenceThatMonth(@RequestParam Long year,
+
                                                          @RequestParam Long month,
                                                          @AuthenticationPrincipal UserDetailsImpl userDetails
                                                          ) {

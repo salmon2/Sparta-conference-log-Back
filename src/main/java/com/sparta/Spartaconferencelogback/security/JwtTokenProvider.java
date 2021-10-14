@@ -34,6 +34,8 @@ public class JwtTokenProvider {
         Claims claims = Jwts.claims().setSubject(userName); // JWT payload 에 저장되는 정보단위
         Date now = new Date();
 
+
+
         // 토큰 유효시간 30분
         long tokenValidTime = 3600 * 60 * 1000L;
 
