@@ -29,16 +29,12 @@ public class DateController {
         return dateService.getAllConferenceThatMonth(year, month);
     }
 
-    @ApiOperation(value="내가 참여한 일정만 보기 (완성)", notes="그 달의 날짜별로 자신이 참여한 회의 개수를 반환한다.")
+    @ApiOperation(value="내가 참여한 일정만 보기 (완성), jwt token 필요 ", notes="그 달의 날짜별로 자신이 참여한 회의 개수를 반환한다.")
     @GetMapping("/main/mylist")
     public DateCountResponseDto getMyConferenceThatMonth(@RequestParam Long year,
-
                                                          @RequestParam Long month,
                                                          @AuthenticationPrincipal UserDetailsImpl userDetails
                                                          ) {
-
-//        User findUser = userRepository.getById(1L);
-//        UserDetailsImpl dummyUserDetails = new UserDetailsImpl(findUser);
 
         return dateService.getMyConferenceThatMonth(year, month, userDetails);
     }
@@ -53,7 +49,7 @@ public class DateController {
     }
 
     //완성
-    @ApiOperation(value="내가 참여한 회의 리스트 조회 (완성) ", notes="해당 날짜에 내가 참여한 회의 리스트를 반환한다.")
+    @ApiOperation(value="내가 참여한 회의 리스트 조회 (완성), jwt token 필요 ", notes="해당 날짜에 내가 참여한 회의 리스트를 반환한다.")
     @GetMapping("/conference/my")
     public DateListResponseDto getMyConferenceThatDate(@RequestParam Long year,
                                                        @RequestParam Long month,
