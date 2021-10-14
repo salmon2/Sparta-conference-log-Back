@@ -48,8 +48,6 @@ public class ConferenceServiceImpl implements ConferenceService{
         return saveConference;
     }
 
-
-
     private void saveConferenceAttendance(ConferenceRequestDto conferenceRequestDto, Conference saveConference) {
         for (UserIdRequestDto userIdRequestDto: conferenceRequestDto.getAttendance()) {
             User findUser = userRepository.findById(userIdRequestDto.getUserId()).orElseThrow(
@@ -63,7 +61,7 @@ public class ConferenceServiceImpl implements ConferenceService{
     }
 
     private void saveConferenceUser(ConferenceRequestDto conferenceRequestDto, UserDetailsImpl userDetails, Conference saveConference) {
-        //saveLeaderUserConference(userDetails, saveConference);
+        saveLeaderUserConference(userDetails, saveConference);
 
         for (UserIdRequestDto userIdRequestDto: conferenceRequestDto.getMember()) {
             User findUser = userRepository.findById(userIdRequestDto.getUserId()).orElseThrow(
@@ -119,25 +117,25 @@ public class ConferenceServiceImpl implements ConferenceService{
         User writerUser = conference.getMember().get(0).getUser();
         writer = writerUser.getNickname();      //회의 만든 사람 nickname
 
-        //생성 날짜 형식 변경
-        LocalDateTime createdAt = conference.getCreatedAt();
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd"); //날짜 출력 형식
-        String date = createdAt.format(dateFormatter);      //생성 날짜
 
-        //생성 시간 형식 변경
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss"); //시간 출력 형식
-        String timeHhMmSs = createdAt.format(timeFormatter);
-        String[] timeSplit = timeHhMmSs.split(":");  //생성 시간
+        //회의 날짜
+        Long dateMonth = conference.getDate().getMonth();
+        Long dateYear = conference.getDate().getYear();
+        Long dateDay = conference.getDate().getDay();
+        String date = dateYear + "/" + dateMonth + "/" + dateDay;
 
-        String hour = timeSplit[0];     //생성 시간 시
-        String minute = timeSplit[1];   //생성 시간 분
-        String second = timeSplit[2];   //생성 시간 초
+//회의 시간
+        String hour = String.valueOf(conference.getDate().getHour());
+        String minute = String.valueOf(conference.getDate().getMinutes());
 
-        TimeResponseDto time = new TimeResponseDto(hour, minute, second);
+        TimeResponseDto time = new TimeResponseDto(hour, minute);
 
-        //수정 날짜
+//수정 날짜
         LocalDateTime modifiedAt = conference.getModifiedAt();
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd"); //날짜 출력 형식
         String lastModifiedAt = modifiedAt.format(dateFormatter);     //수정 시간
+
+
 
         //회의 내용
         String contents = conference.getContents();

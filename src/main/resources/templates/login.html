@@ -77,12 +77,32 @@
 
   function test(){
     $.ajax({
-      type: "GET",
-      url: `/user`,
+      type: "POST",
+      url: `/conference`,
       headers:{
         'Authorization': $.cookie('token')
       },
       contentType: "application/json",
+      data: JSON.stringify({
+        "attendance": [
+          {
+            "userId": 1
+          },
+
+        ],
+        "contents": "string",
+        "date": "2021-10-11 13:00",
+        "member": [
+          {
+            "userId": 1
+          },
+          {
+            "userId" : 2
+          }
+        ],
+        "purpose": "string",
+        "title": "string"
+      }),
       success: function (response, textStatus, request) {
         console.log(response)
       }

@@ -39,6 +39,7 @@ public class SimpleListener implements ApplicationListener<ApplicationStartedEve
 
         User user2 = new User("user2", "user2", passwordEncoder.encode("asdf"));
         User user3 = new User("user3", "user3", passwordEncoder.encode("asdf"));
+        User root = new User("root", "user3", passwordEncoder.encode("asdf"));
 
         em.persist(user1);
         em.persist(user2);
