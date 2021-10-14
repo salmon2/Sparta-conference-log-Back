@@ -50,6 +50,7 @@ public class ConferenceController {
     @ApiOperation(value="Conference 정보 업데이트 (완성) ", notes="Conference 내용을 받아 수정한다.")
     public ResponseMsg conferenceUpdate(@RequestParam Long conferenceId,
                                         @RequestBody ConferenceUpdateRequestDto conferenceUpdateRequestDto){
+
         conferenceService.update(conferenceId, conferenceUpdateRequestDto);
 
         ResponseMsg responseMsg = new ResponseMsg(200L, "회의 업데이트 완료");

@@ -46,8 +46,7 @@ public class DateController {
     @ApiOperation(value="해당 날짜 회의 리스트 조회 (완성) ", notes="해당 날짜에 등록되어있는 회의 리스트를 반환한다.")
     @GetMapping("/conference")
     public DateListResponseDto getAllConferenceThatDate(@RequestParam Long year, @RequestParam Long month,
-                                                        @RequestParam Long day,
-                                                        @AuthenticationPrincipal UserDetailsImpl userDetails) {
+                                                        @RequestParam Long day) {
         DateListResponseDto result = dateService.getAllConferenceThatDate(year, month, day);
         return result;
     }
@@ -59,8 +58,6 @@ public class DateController {
                                                        @RequestParam Long month,
                                                        @RequestParam Long day,
                                                        @AuthenticationPrincipal UserDetailsImpl userDetails) {
-//        User findUser = userRepository.getById(1L);
-//        UserDetailsImpl dummyUserDetails = new UserDetailsImpl(findUser);
 
         return dateService.getMyConferenceThatDate(year, month, day, userDetails);
     }
