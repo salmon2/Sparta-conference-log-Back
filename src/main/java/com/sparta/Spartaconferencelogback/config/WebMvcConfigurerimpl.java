@@ -14,6 +14,7 @@ public class WebMvcConfigurerimpl implements WebMvcConfigurer {
 
                 .allowedMethods("HEAD", "GET", "POST", "PUT", "DELETE", "PATCH")
                 .allowCredentials(true);
+
     }
 
 }

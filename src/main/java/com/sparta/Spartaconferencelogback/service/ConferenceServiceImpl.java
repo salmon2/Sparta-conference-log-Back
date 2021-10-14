@@ -124,17 +124,17 @@ public class ConferenceServiceImpl implements ConferenceService{
         Long dateDay = conference.getDate().getDay();
         String date = dateYear + "/" + dateMonth + "/" + dateDay;
 
-//회의 시간
+
         String hour = String.valueOf(conference.getDate().getHour());
         String minute = String.valueOf(conference.getDate().getMinutes());
 
+
         TimeResponseDto time = new TimeResponseDto(hour, minute);
 
-//수정 날짜
+        //수정 날짜
         LocalDateTime modifiedAt = conference.getModifiedAt();
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd"); //날짜 출력 형식
         String lastModifiedAt = modifiedAt.format(dateFormatter);     //수정 시간
-
 
 
         //회의 내용
