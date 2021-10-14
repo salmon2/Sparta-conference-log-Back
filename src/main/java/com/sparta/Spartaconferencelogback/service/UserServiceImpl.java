@@ -69,8 +69,8 @@ public class UserServiceImpl implements UserService {
         final int MAX = 10;
         final String pattern = "^((?=.*\\d)(?=.*[a-zA-Z])(?=.*[\\W]).{" + MIN + "," + MAX + "})$";
         if (!Pattern.matches(pattern, password)) {
-            throw new IllegalArgumentException("유효하지 않은 패스워드 입니다." +
-                    "[패스워드는 4자 이상 10자 이하이며 영어,숫자,특수문자를 포함해야 합니다.]");
+            throw new IllegalArgumentException("" +
+                    "]");
         }
 
     }

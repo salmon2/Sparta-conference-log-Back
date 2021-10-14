@@ -40,7 +40,7 @@ public class UserController {
         try {
             userService.registerUser(requestDto);
         } catch (Exception e) {
-            return new ResponseMsg(500L, "fail");
+            return new ResponseMsg(500L, e.getMessage());
         }
         return new ResponseMsg(200L, "success");
 
