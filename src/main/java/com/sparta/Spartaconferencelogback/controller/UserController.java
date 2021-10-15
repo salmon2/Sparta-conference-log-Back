@@ -4,6 +4,7 @@ package com.sparta.Spartaconferencelogback.controller;
 import com.sparta.Spartaconferencelogback.domain.User;
 import com.sparta.Spartaconferencelogback.dto.ResponseMsg;
 import com.sparta.Spartaconferencelogback.dto.SignupRequestDto;
+import com.sparta.Spartaconferencelogback.dto.UserInfoNickNameDto;
 import com.sparta.Spartaconferencelogback.dto.userdtos.LoginRequestDto;
 import com.sparta.Spartaconferencelogback.dto.userdtos.TokenResponse;
 import com.sparta.Spartaconferencelogback.dto.userdtos.UserInfoDto;
@@ -59,6 +60,7 @@ public class UserController {
             tokenResponse.setStatusCode(500L);
             tokenResponse.setMsg(e.getMessage());
         }
+
         return tokenResponse;
     }
 
@@ -95,12 +97,12 @@ public class UserController {
 
     @GetMapping("/user")
     @ApiOperation(value="유저 정보 확인, jwt token 필요 ", notes="유저 정보 확인")
-    public UserInfoDto userInfoDto(@AuthenticationPrincipal UserDetailsImpl userDetails){
+    public UserInfoNickNameDto userInfoDto(@AuthenticationPrincipal UserDetailsImpl userDetails){
         System.out.println("userDetails = " + userDetails);
 
-        UserInfoDto userInfoDto = new UserInfoDto(userDetails.getUsername(), userDetails.getNickname());
+        UserInfoNickNameDto UserInfoNickNameDto = new UserInfoNickNameDto(userDetails.getUsername(), userDetails.getNickname());
 
-        return userInfoDto;
+        return UserInfoNickNameDto;
     }
 
 }

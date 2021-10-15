@@ -14,5 +14,4 @@ public class TokenResponse {
     private Long statusCode;
     private String msg;
     private String token;
-
 }

@@ -13,25 +13,22 @@ import static javax.persistence.FetchType.LAZY;
 @Getter
 @Setter
 @NoArgsConstructor
-public class UserConferenceAttendance {
-
+public class Attendance {
     @Id
     @GeneratedValue
     private Long id;
 
-    @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "userId")
-    @JsonIgnore
-    private User user;
 
+    private String username;
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "conferenceId")
     @JsonIgnore
-    private Conference conferenceAttendance;
+    private Conference conference;
 
-    public UserConferenceAttendance(User user, Conference conferenceAttendance) {
-        this.user = user;
-        this.conferenceAttendance = conferenceAttendance;
+
+    public Attendance(String username, Conference conference) {
+        this.username = username;
+        this.conference = conference;
     }
 }
