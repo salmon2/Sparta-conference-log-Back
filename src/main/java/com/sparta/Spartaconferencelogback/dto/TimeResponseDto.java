@@ -10,5 +10,4 @@ import lombok.NoArgsConstructor;
 public class TimeResponseDto {
     private String hour;    //작성 시간 중 시
     private String minute;  //작성 시간 중 분
-    private String second;  //작성 시간 중 초
 }

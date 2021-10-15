@@ -4,6 +4,7 @@ package com.sparta.Spartaconferencelogback.controller;
 import com.sparta.Spartaconferencelogback.domain.User;
 import com.sparta.Spartaconferencelogback.dto.ResponseMsg;
 import com.sparta.Spartaconferencelogback.dto.SignupRequestDto;
+import com.sparta.Spartaconferencelogback.dto.UserInfoNickNameDto;
 import com.sparta.Spartaconferencelogback.dto.userdtos.LoginRequestDto;
 import com.sparta.Spartaconferencelogback.dto.userdtos.TokenResponse;
 import com.sparta.Spartaconferencelogback.dto.userdtos.UserInfoDto;
@@ -59,20 +60,19 @@ public class UserController {
             tokenResponse.setStatusCode(500L);
             tokenResponse.setMsg(e.getMessage());
         }
+
         return tokenResponse;
     }
-
 
     @GetMapping("/user/list")
     @ApiOperation(value="회원 리스트 조회 ", notes="회원 리스트 조회 ")
     @ResponseBody
     public UserList userList() {
-
         UserList userList = userService.getUserList();
         return userList;
     }
 
-    @ApiOperation(value="회원 아이디 중복체크", notes="올바른 email형식인지 확인, 중복여부 확인 후 성공 실패여부 반환")
+    @ApiOperation(value="회원 아이디 중복체크", notes="올바른 email 형식인지 확인, 중복여부 확인 후 성공 실패여부 반환")
     @PostMapping("/user/email")
     public ResponseMsg checkDupUsername(@RequestBody String username){
         try {
@@ -96,12 +96,13 @@ public class UserController {
     }
 
     @GetMapping("/user")
-    public UserInfoDto userInfoDto(@AuthenticationPrincipal UserDetailsImpl userDetails){
+    @ApiOperation(value="유저 정보 확인, jwt token 필요 ", notes="유저 정보 확인")
+    public UserInfoNickNameDto userInfoDto(@AuthenticationPrincipal UserDetailsImpl userDetails){
         System.out.println("userDetails = " + userDetails);
 
-        UserInfoDto userInfoDto = new UserInfoDto(userDetails.getUsername(), userDetails.getNickname());
+        UserInfoNickNameDto UserInfoNickNameDto = new UserInfoNickNameDto(userDetails.getUsername(), userDetails.getNickname());
 
-        return userInfoDto;
+        return UserInfoNickNameDto;
     }
 
 }

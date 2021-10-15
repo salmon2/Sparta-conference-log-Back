@@ -1,9 +1,9 @@
 package com.sparta.Spartaconferencelogback;
 
+import com.sparta.Spartaconferencelogback.domain.Attendance;
 import com.sparta.Spartaconferencelogback.domain.Conference;
 import com.sparta.Spartaconferencelogback.domain.Date;
 import com.sparta.Spartaconferencelogback.domain.User;
-import com.sparta.Spartaconferencelogback.domain.UserConferenceMember;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
@@ -39,6 +39,7 @@ public class SimpleListener implements ApplicationListener<ApplicationStartedEve
 
         User user2 = new User("user2", "user2", passwordEncoder.encode("asdf"));
         User user3 = new User("user3", "user3", passwordEncoder.encode("asdf"));
+        User root = new User("root", "user3", passwordEncoder.encode("asdf"));
 
         em.persist(user1);
         em.persist(user2);
@@ -67,11 +68,14 @@ public class SimpleListener implements ApplicationListener<ApplicationStartedEve
     private void makeConference(EntityManager em, User user1, User user2, Date date, String 테스트테스트) {
         Conference conference3 = new Conference(테스트테스트, "스터디", "회의 시러용", date);
         em.persist(conference3);
-        //회의 사람들
-        UserConferenceMember userConferenceMember3 = new UserConferenceMember(user1, conference3);
-        em.persist(userConferenceMember3);
 
-        UserConferenceMember userConferenceMember4 = new UserConferenceMember(user2, conference3);
-        em.persist(userConferenceMember4);
+        //회의 사람들
+        Attendance newAttendance1 = new Attendance(user1.getUsername(), conference3);
+        em.persist(newAttendance1);
+
+        Attendance newAttendance2 = new Attendance(user2.getUsername(), conference3);
+        em.persist(newAttendance2);
+
+
     }
 }

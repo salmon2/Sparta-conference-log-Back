@@ -11,6 +11,7 @@ import com.sparta.Spartaconferencelogback.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.validation.constraints.Null;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -58,11 +59,11 @@ public class DateServiceImpl implements DateService {
             //회의 검사
             for(int i=0; i<conferences.size(); i++) {
                 Conference conference = conferences.get(i);
-                List<UserConferenceMember> members = conference.getMember();
+                List<Attendance> members = conference.getAttendanceList();
 
                 //멤버검사
                 for(int j=0; j<members.size(); j++) {
-                    String memberUsername = members.get(j).getUser().getUsername();
+                    String memberUsername = members.get(j).getUsername();
                     if(memberUsername.equals(username)) {
                         size++;
                     }
@@ -95,12 +96,9 @@ public class DateServiceImpl implements DateService {
 
                     //List<UserConferenceAttendance>의 가장 첫번째에 회의를 만든 사람 데이터가 담겨있음
 
-                    List<UserConferenceMember> member = conference.getMember();
-                    UserConferenceMember userConferenceMember = member.get(0);
-                    User user = userConferenceMember.getUser();
-
-                    User leaderUser = user;
-                    leader = leaderUser.getNickname();
+                    List<Attendance> member = conference.getAttendanceList();
+                    Attendance userConferenceMember = member.get(0);
+                    leader = userConferenceMember.getUsername();
 
                     date = year + "/" + month + "/" + day;
 
@@ -120,42 +118,24 @@ public class DateServiceImpl implements DateService {
         Long userId = userDetails.getUserId(); //로그인한 계정 userId
 
         List<Date> dateList = dateRepository.findAllByYearAndMonthAndDay(year, month, day);
-        Long conferenceId = 0L;     //회의 번호
-        String title = "";          //회의 제목
-        String leader = "";         //회의를 만든 사람 nickname
-        String date = "";           //날짜(YYYY/MM/DD)
+        String dateString = year + "/" + month + "/" + day;
 
-        DateListResponseDto responseDto = null;
 
-        Optional<User> byUsername = userRepository.findByUsername(userDetails.getUsername());
-        //List<UserConferenceAttendance> attendedConference = byUsername.get().getUserConferenceAttendances();
+        List<ConferenceListResponseDto> conferenceList = new ArrayList<>();
 
-        if(byUsername.isPresent()) {
-            List<UserConferenceMember> conferenceMemberList = byUsername.get().getUserConferenceMembers();
-
-            List<ConferenceListResponseDto> conferenceListResponseDtoList = new ArrayList<>();
-
-            for(int i=0; i<conferenceMemberList.size(); i++) {
-                UserConferenceMember userConferenceMember = conferenceMemberList.get(i);
-                Conference conference = userConferenceMember.getConferenceMember();
-                conferenceId = conference.getId();
-                title = conference.getTitle();
-                //List<UserConferenceAttendance>의 가장 첫번째에 회의를 만든 사람 데이터가 담겨있다고 가정
-                leader = conference.getMember().get(0).getUser().getNickname();
-                date = year + "/" + month + "/" + day;
-
-                if(day == conference.getDate().getDay() ){
-                    ConferenceListResponseDto conferenceListResponseDto =
-                                    new ConferenceListResponseDto(conferenceId, title, leader, date);
-                    conferenceListResponseDtoList.add(conferenceListResponseDto);
+        for (Date date: dateList) {
+            for (Conference conference : date.getConferences()) {
+                String leader = conference.getAttendanceList().get(0).getUsername();
+                for (Attendance attendance:conference.getAttendanceList()) {
+                    if(attendance.getUsername().equals(userDetails.getUsername())){
+                        ConferenceListResponseDto conferenceListResponseDto = new ConferenceListResponseDto(conference.getId(), conference.getTitle(), leader, dateString);
+                        conferenceList.add(conferenceListResponseDto);
+                    }
                 }
             }
-
-            responseDto = new DateListResponseDto(conferenceListResponseDtoList);
         }
 
-
-
+        DateListResponseDto responseDto = new DateListResponseDto(conferenceList);
         return responseDto;
     }
 

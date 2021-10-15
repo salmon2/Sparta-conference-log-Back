@@ -22,13 +22,6 @@ public class Conference extends Timestamped{
 
     private String title;
 
-
-    @OneToMany(mappedBy = "conferenceMember", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<UserConferenceMember> member = new ArrayList<>();
-
-    @OneToMany(mappedBy = "conferenceAttendance", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<UserConferenceAttendance> attendance = new ArrayList<>();
-
     private String purpose;
 
     private String contents;
@@ -37,6 +30,10 @@ public class Conference extends Timestamped{
     @JoinColumn(name = "dateId")
     @JsonIgnore
     private Date date;
+
+    @OneToMany(mappedBy = "conference", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Attendance> attendanceList = new ArrayList<>();
+
 
     public Conference(String title, String purpose, String contents, Date date) {
         this.title = title;

@@ -1,4 +1,4 @@
-package com.sparta.Spartaconferencelogback.dto.userdtos;
+package com.sparta.Spartaconferencelogback.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,8 +7,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-public class UserInfoDto {
+@AllArgsConstructor
+public class UserInfoNickNameDto {
     String username;
+    String nickname;
 }

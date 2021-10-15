@@ -18,12 +18,6 @@ import static javax.persistence.FetchType.LAZY;
 @NoArgsConstructor
 public class User {
 
-    public User(String username, String nickname, String password) {
-        this.username = username;
-        this.nickname = nickname;
-        this.password = password;
-    }
-
     @Id @GeneratedValue
     private Long id;
 
@@ -38,10 +32,10 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = LAZY, cascade = ALL)
     private List<userGroup> userGroups = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user", fetch = LAZY, cascade = ALL)
-    private List<UserConferenceMember> userConferenceMembers = new ArrayList<>();
-
-    @OneToMany(mappedBy = "user", fetch = LAZY, cascade = ALL)
-    private List<UserConferenceAttendance> userConferenceAttendances = new ArrayList<>();
+    public User(String username, String nickname, String password) {
+        this.username = username;
+        this.nickname = nickname;
+        this.password = password;
+    }
 
 }
