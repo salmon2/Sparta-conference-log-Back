@@ -14,10 +14,9 @@ import java.util.List;
 public class ConferenceDetailResponseDto {
     private Long conferenceId;
     private String title;
-    private List<UserInfoDto> actualJoinedPeople;
+    private List<UserInfoDto> member;
     private String writer;
     private String date;
-    private TimeResponseDto time;
     private String lastModifiedAt;
     private String contents;
 

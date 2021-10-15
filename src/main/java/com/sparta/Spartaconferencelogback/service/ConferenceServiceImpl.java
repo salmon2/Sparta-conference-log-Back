@@ -15,6 +15,7 @@ import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -39,7 +40,15 @@ public class ConferenceServiceImpl implements ConferenceService{
 
         Conference saveConference = conferenceRepository.save(newConference);
 
-        for (UserInfoDto userInfoDto : conferenceRequestDto.getMember()) {
+        String memberStr = conferenceRequestDto.getMember();
+        String memberArr[] = memberStr.split(",");
+        List<UserInfoDto> memberDtoArr = new ArrayList<>();
+        for (String s : memberArr) {
+            memberDtoArr.add(new UserInfoDto(s));
+        }
+
+
+        for (UserInfoDto userInfoDto : memberDtoArr) {
             Attendance newAttendance = new Attendance(userInfoDto.getUsername(), saveConference);
             Attendance saveAttendance = attendanceRepository.save(newAttendance);
         }
@@ -95,11 +104,12 @@ public class ConferenceServiceImpl implements ConferenceService{
         Long dateMonth = conference.getDate().getMonth();
         Long dateYear = conference.getDate().getYear();
         Long dateDay = conference.getDate().getDay();
-        String date = dateYear + "/" + dateMonth + "/" + dateDay;
-
-
         String hour = String.valueOf(conference.getDate().getHour());
         String minute = String.valueOf(conference.getDate().getMinutes());
+        String date = dateYear + "/" + dateMonth + "/" + dateDay + ' ' + hour + ":" + minute;
+
+
+
 
 
         TimeResponseDto time = new TimeResponseDto(hour, minute);
@@ -115,7 +125,7 @@ public class ConferenceServiceImpl implements ConferenceService{
 
         ConferenceDetailResponseDto responseDto =
                 new ConferenceDetailResponseDto(conferenceId, title, userInfoDtoList,
-                                                        writer, date, time, lastModifiedAt, contents);
+                                                        writer, date, lastModifiedAt, contents);
 
         return responseDto;
     }

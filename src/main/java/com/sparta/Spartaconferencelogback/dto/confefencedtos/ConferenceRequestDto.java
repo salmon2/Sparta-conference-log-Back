@@ -22,7 +22,7 @@ public class ConferenceRequestDto {
 
     private String contents;
 
-    private List<UserInfoDto> member;
+    private String member;
 
 
 }

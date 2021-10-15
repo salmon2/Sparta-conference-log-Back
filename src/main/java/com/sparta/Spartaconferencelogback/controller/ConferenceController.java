@@ -1,6 +1,7 @@
 package com.sparta.Spartaconferencelogback.controller;
 
 import com.sparta.Spartaconferencelogback.domain.Conference;
+import com.sparta.Spartaconferencelogback.dto.SaveReponseDto;
 import com.sparta.Spartaconferencelogback.dto.confefencedtos.ConferenceDetailResponseDto;
 import com.sparta.Spartaconferencelogback.dto.confefencedtos.ConferenceRequestDto;
 import com.sparta.Spartaconferencelogback.dto.confefencedtos.ConferenceUpdateRequestDto;
@@ -29,13 +30,14 @@ public class ConferenceController {
 
     @PostMapping("/conference")
     @ApiOperation(value="Conference 정보 생성(제목), jwt token 필요", notes="Conference 내용을 받아 저장한다.(설명)")
-    public ResponseMsg conferenceSave(@RequestBody ConferenceRequestDto conferenceRequestDto,
+    public SaveReponseDto conferenceSave(@RequestBody ConferenceRequestDto conferenceRequestDto,
                                       @AuthenticationPrincipal UserDetailsImpl userDetails){
 
         Conference newConference = conferenceService.save(conferenceRequestDto, userDetails);
 
-        ResponseMsg responseMsg = new ResponseMsg(200L, "회의 저장 성공");
-        return responseMsg;
+        SaveReponseDto saveReponseDto = new SaveReponseDto(newConference.getId(), userDetails.getUsername());
+
+        return saveReponseDto;
     }
 
     @DeleteMapping("/conference")
