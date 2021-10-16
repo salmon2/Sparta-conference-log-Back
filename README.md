@@ -38,7 +38,7 @@
 ## 5. 실행 화면
 
 - DB 저장
-    - select query와 insert query
+    - select query와 insert query<br>
     ![Untitled 1](https://user-images.githubusercontent.com/23234577/137581333-b662ebfc-ce12-47dc-9136-ff76b3b1091f.png)
 - swagger api docs
     - api 모음 집
@@ -67,7 +67,7 @@
 
 ## 7. 해결한 문제 정리해보기
 
-1. **Year, Month, Day 키워드를 통해서 혹은 Year, Month에 해당하는 Conference도메인을 쉽게 가져올 수 없을까?**
+### 1. **Year, Month, Day 키워드를 통해서 혹은 Year, Month에 해당하는 Conference도메인을 쉽게 가져올 수 없을까?**
     1. Date 도메인에 각각 `년`, `월`, `일` 컬럼을 생성하고, Conference 도메인과 `연관 관계`를 지어 조회하고 싶은 년, 월, 일 데이터로 request하면 해당 날짜에 진행한 회의 목록을 response하도록 하였다. 
     ![Untitled 5](https://user-images.githubusercontent.com/23234577/137581528-f8992b1b-ffa0-4c51-952d-802290d13289.png)    
     
@@ -89,7 +89,7 @@
     ![Untitled 6](https://user-images.githubusercontent.com/23234577/137581536-c1dff430-936e-400a-ba9a-bd87b1e883fa.png)
     
     
-    회의글 관련 api
+    회의글 관련 api<br>
     ![Untitled 7](https://user-images.githubusercontent.com/23234577/137581542-12fb1b40-f762-415e-835d-3c83ce5fd6e1.png)
     
     
@@ -144,7 +144,7 @@
     초기 도메인 모델
     
     ![image_(1)](https://user-images.githubusercontent.com/23234577/137581581-2316e2c2-49f1-4753-aeed-9213434def92.png)
-     변경된 도메인 모델
+     변경된 도메인 모델<br>
     ![Untitled 10](https://user-images.githubusercontent.com/23234577/137581572-eb7d7898-9d26-412c-ab03-d8d1c39f1814.png)
    
    
