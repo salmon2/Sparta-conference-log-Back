@@ -28,7 +28,8 @@
 
 ## 3. 도메인 설계
 
-![Untitled](Readme%20md(%E1%84%8E%E1%85%A9%E1%84%8B%E1%85%A1%E1%86%AB)%207eb91fdfe4b84417a9ed916a29f50bc3/Untitled.png)
+![Untitled](https://user-images.githubusercontent.com/23234577/137581281-6dab3741-c231-4fa4-af3c-ea858cbcb046.png)
+
 
 ## 4. API 설계
 
@@ -38,22 +39,17 @@
 
 - DB 저장
     - select query와 insert query
-    
-    ![Untitled](Readme%20md(%E1%84%8E%E1%85%A9%E1%84%8B%E1%85%A1%E1%86%AB)%207eb91fdfe4b84417a9ed916a29f50bc3/Untitled%201.png)
-    
+    ![Untitled 1](https://user-images.githubusercontent.com/23234577/137581333-b662ebfc-ce12-47dc-9136-ff76b3b1091f.png)
 - swagger api docs
     - api 모음 집
-    
-    ![Untitled](Readme%20md(%E1%84%8E%E1%85%A9%E1%84%8B%E1%85%A1%E1%86%AB)%207eb91fdfe4b84417a9ed916a29f50bc3/Untitled%202.png)
+    ![Untitled 2](https://user-images.githubusercontent.com/23234577/137581454-8d625dbc-a858-458a-b262-2003d4d47eab.png)
     
     - 날짜에 따른 회의 목록 조회 관련 api
-    
-    ![Untitled](Readme%20md(%E1%84%8E%E1%85%A9%E1%84%8B%E1%85%A1%E1%86%AB)%207eb91fdfe4b84417a9ed916a29f50bc3/Untitled%203.png)
+    ![Untitled 3](https://user-images.githubusercontent.com/23234577/137581484-4f5ca31d-19ad-4f92-bdf2-2a6bba647a56.png)
     
 - Talend API Tester 를 이용한 테스트
     - 로그인 테스트와 response에 나타나는 토큰 값
-    
-    ![Untitled](Readme%20md(%E1%84%8E%E1%85%A9%E1%84%8B%E1%85%A1%E1%86%AB)%207eb91fdfe4b84417a9ed916a29f50bc3/Untitled%204.png)
+    ![Untitled 4](https://user-images.githubusercontent.com/23234577/137581496-ce396f25-4e57-433c-89cf-355668b84080.png)
     
 
 ## 6. 핵심 기술
@@ -73,9 +69,7 @@
 
 1. **Year, Month, Day 키워드를 통해서 혹은 Year, Month에 해당하는 Conference도메인을 쉽게 가져올 수 없을까?**
     1. Date 도메인에 각각 `년`, `월`, `일` 컬럼을 생성하고, Conference 도메인과 `연관 관계`를 지어 조회하고 싶은 년, 월, 일 데이터로 request하면 해당 날짜에 진행한 회의 목록을 response하도록 하였다. 
-        
-        ![Untitled](Readme%20md(%E1%84%8E%E1%85%A9%E1%84%8B%E1%85%A1%E1%86%AB)%207eb91fdfe4b84417a9ed916a29f50bc3/Untitled%205.png)
-        
+    ![Untitled 5](https://user-images.githubusercontent.com/23234577/137581528-f8992b1b-ffa0-4c51-952d-802290d13289.png)    
     
 2. **프로젝트의 로그인 방식을 구현할 것 인가?**
     
@@ -92,18 +86,18 @@
     그렇기에 이번 프로젝트에서는 `swagger` framework 를 통하여 동적으로 `web api docs` 를 구현하게 되었다.
     
     실제 swagger api 화면
+    ![Untitled 6](https://user-images.githubusercontent.com/23234577/137581536-c1dff430-936e-400a-ba9a-bd87b1e883fa.png)
     
-    ![Untitled](Readme%20md(%E1%84%8E%E1%85%A9%E1%84%8B%E1%85%A1%E1%86%AB)%207eb91fdfe4b84417a9ed916a29f50bc3/Untitled%206.png)
     
     회의글 관련 api
+    ![Untitled 7](https://user-images.githubusercontent.com/23234577/137581542-12fb1b40-f762-415e-835d-3c83ce5fd6e1.png)
     
-    ![Untitled](Readme%20md(%E1%84%8E%E1%85%A9%E1%84%8B%E1%85%A1%E1%86%AB)%207eb91fdfe4b84417a9ed916a29f50bc3/Untitled%207.png)
     
 4. **API를 설계한 request 와 response 데이터를 어떻게 쉽게 JSON 형식으로 보낼 수 있을까?**
     1. Controller에 `@RestController` 를 선언하여 JSON형식으로 데이터를 response하도록 한다.
     2. 사용자가 화면에서 입력한 데이터를 ReqeustDto에 저장하고, DB에서 데이터를 조회하여 response해야 할 JSON형식에 맞춰 Service에서 가공하여 response한다. 
         
-        ![Untitled](Readme%20md(%E1%84%8E%E1%85%A9%E1%84%8B%E1%85%A1%E1%86%AB)%207eb91fdfe4b84417a9ed916a29f50bc3/Untitled%208.png)
+        ![Untitled 8](https://user-images.githubusercontent.com/23234577/137581560-378f28c9-7086-4f08-9cbf-ef97fa5936a0.png)
         
     
 5. **프론트 서버가 개발되기 전에 백엔드에서 구현한 API를 어떻게 테스트를 할 것인가?**
@@ -114,7 +108,7 @@
     
     user 정보를 가져오는 api
     
-    ![Untitled](Readme%20md(%E1%84%8E%E1%85%A9%E1%84%8B%E1%85%A1%E1%86%AB)%207eb91fdfe4b84417a9ed916a29f50bc3/Untitled%209.png)
+    ![Untitled 9](https://user-images.githubusercontent.com/23234577/137581565-c79f7ae2-97ce-46cb-831d-0ce532fb51c4.png)
     
 6. **CORS 규약이란 무엇이며, 개발단계-배포단계에서는 어떻게 대응해야 할 것인가?**
     
@@ -149,10 +143,9 @@
     
     초기 도메인 모델
     
-    ![image (1).png](Readme%20md(%E1%84%8E%E1%85%A9%E1%84%8B%E1%85%A1%E1%86%AB)%207eb91fdfe4b84417a9ed916a29f50bc3/image_(1).png)
-    
+    ![image_(1)](https://user-images.githubusercontent.com/23234577/137581581-2316e2c2-49f1-4753-aeed-9213434def92.png)
      변경된 도메인 모델
-    
-    ![Untitled](Readme%20md(%E1%84%8E%E1%85%A9%E1%84%8B%E1%85%A1%E1%86%AB)%207eb91fdfe4b84417a9ed916a29f50bc3/Untitled%2010.png)
-    
+    ![Untitled 10](https://user-images.githubusercontent.com/23234577/137581572-eb7d7898-9d26-412c-ab03-d8d1c39f1814.png)
+   
+   
     일단 필수적인 서비스인 `conference` api 와 `date` api는 모두 작성해두고 프로젝트의 스코프가 축소한만큼 도메인 모델을 다시 설계하게 되었으며 변경된 api만 다시 작성하여 스코프가 변경되어도 유연하게 대처할 수 있게 되었다.
