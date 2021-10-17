@@ -44,8 +44,8 @@ public class UserController {
             return new ResponseMsg(500L, e.getMessage());
         }
         return new ResponseMsg(200L, "success");
-
     }
+
 
     @ApiOperation(value = "회원 로그인", notes = "로그인 결과 반환")
     @PostMapping("/user/login")
