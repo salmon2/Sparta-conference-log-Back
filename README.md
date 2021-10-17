@@ -6,6 +6,13 @@
 
 <br>
 
+## 시연영상
+https://www.youtube.com/watch?v=3qWBMpdNZpE   
+   
+<image src="https://user-images.githubusercontent.com/44156173/137639603-ab4b8fba-1a78-47b5-8756-6cca7fe66f6c.png" width="400" height="300">
+
+<br><br>
+
 ## 팀원소개
 ### FRONT END
 https://github.com/sungminleeme/Sparta-conference-log
